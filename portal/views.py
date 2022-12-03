@@ -67,7 +67,9 @@ def register(request):
 #------
 
 def index(request):
+    current_user = request.user
     return render(request, "portal/index.html", {
+        'usuario': current_user.username
     })
 
 
@@ -116,8 +118,9 @@ def categoria(request, grupo_id, categoria_id):
     })
 
 def lista_grupos(request):
+    current_user = request.user
     return render(request, "portal/lista_grupos.html", {
-        
+        'usuario': current_user.username
     })
 
 def grupo(request, grupo_id):
@@ -136,8 +139,9 @@ def config_grupo(request, grupo_id):
     })
 
 def salvos(request):
+    current_user = request.user
     return render(request, "portal/salvos.html", {
-        
+        'usuario': current_user.username
     })
 
 def publicar(request):

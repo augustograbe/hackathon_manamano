@@ -1,0 +1,9 @@
+{% extends "portal/layout.html" %}
+
+{% block body %}
+<a href="/perfil/{{ usuario }}">perfil</a>
+<a href="{% url 'publicar' %}">publicar</a>
+<a href="{% url 'index' %}">index</a>
+<a href="{% url 'lista_grupos' %}">lista de grupos</a>
+
+{% endblock %}

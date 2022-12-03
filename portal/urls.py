@@ -20,5 +20,6 @@ urlpatterns = [
     path("publicar", views.publicar, name="publicar"),
     path("post/<str:post_id>", views.post, name="post"), 
     # api
+    #path("criar_categoria")
 
 ]
