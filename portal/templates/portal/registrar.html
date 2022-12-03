@@ -1,0 +1,33 @@
+{% extends "portal/layout.html" %}
+
+{% block body %}
+
+    <h2>Registrar</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Nome">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="numero" name="numero" placeholder="WhatsApp">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Senha">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="confirmation" placeholder="Confirmar Senha">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Registrar" id="botao">
+    </form>
+
+    Já tem uma conta? <a href="{% url 'login' %}">Entre aqui.</a>
+
+{% endblock %}

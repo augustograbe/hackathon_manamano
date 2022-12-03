@@ -1,0 +1,18 @@
+{% extends "portal/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+{{ user_name }}
+
+{{ numero }}
+
+{{ descricao }}
+
+{% if editar_visivel %}
+    <a href="/editar_perfil/{{ user_name }}">editar perfil</a>
+{% endif %}
+
+
+{% endblock %}

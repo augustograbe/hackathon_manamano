@@ -1,0 +1,22 @@
+{% extends "portal/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+{{ user_name }}
+
+{{ numero }}
+
+{{ descricao }}
+
+<form action="{% url 'editar_perfil' user_name %}" method="post">
+    {% csrf_token %}
+    {{ perfil_form.numero }}
+    {{ perfil_form.descricao }}
+    <div id="editar_perfil">
+        <input type="submit" class="btn btn-primary" value="Editar">
+    </div>
+</form>
+
+{% endblock %}

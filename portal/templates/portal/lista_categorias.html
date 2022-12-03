@@ -1,0 +1,10 @@
+{% extends "portal/layout.html" %}
+
+{{ grupo.nome }}
+
+
+{% block body %}
+    {% #for categoria in grupo.categorias %}
+        {{ #categoria.nome }}
+    {% #endfor %}
+{% endblock %}
