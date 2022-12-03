@@ -109,3 +109,44 @@ def lista_categorias(request, grupo_id):
     return render(request, "portal/lista_categorias.html", {
         "grupo": Grupo.objects.get(id=grupo_id)
     })
+
+def categoria(request, grupo_id, categoria_id):
+    return render(request, "portal/categoria.html", {
+        
+    })
+
+def lista_grupos(request):
+    return render(request, "portal/lista_grupos.html", {
+        
+    })
+
+def grupo(request, grupo_id):
+    return render(request, "portal/grupo.html", {
+        
+    })
+
+def sobre(request, grupo_id):
+    return render(request, "portal/sobre.html", {
+        
+    })
+
+def config_grupo(request, grupo_id):
+    return render(request, "portal/config_grupo.html", {
+        
+    })
+
+def salvos(request):
+    return render(request, "portal/salvos.html", {
+        
+    })
+
+def publicar(request):
+    return render(request, "portal/publicar.html", {
+        
+    })
+
+def post(request, post_id):
+    return render(request, "portal/post.html", {
+        
+    })
+
