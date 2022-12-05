@@ -1,9 +1,16 @@
 {% extends "portal/navbar_3.html" %}
 
 {% block nome %}
+    {{ post.titulo }}
+{% endblock %}
 
+{% block back %}
+    {% url 'index' %}
 {% endblock %}
 
 {% block body %}
+    {{ post.autor }}
+    {{ post.data}}
+    {{ post.publicacao }}
 
 {% endblock %}

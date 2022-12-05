@@ -69,9 +69,11 @@ def register(request):
 
 def index(request):
     current_user = request.user
-    publicacoes = Post.objects.all()
+    grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) ).distinct()
+    categorias = Categoria.objects.filter(grupo__in=grupos).distinct()
+    publicacoes = Post.objects.filter(categoria__in=categorias).distinct()
+    #publicacoes = Post.objects.all()
     return render(request, "portal/index.html", {
-        'usuario': current_user.username,
         'publicacoes': publicacoes
     })
 
@@ -132,10 +134,12 @@ def lista_grupos(request):
     })
 
 def grupo(request, grupo_id):
-    current_user = request.user
     grupo = Grupo.objects.get(id=grupo_id)
+    categorias = grupo.categorias.all()
+    posts = Post.objects.filter(categoria__in=categorias).distinct()
     return render(request, "portal/grupo.html", {
-        'grupo': grupo
+        'grupo': grupo,
+        'posts': posts
     })
 
 def sobre(request, grupo_id):
@@ -152,9 +156,9 @@ def config_grupo(request, grupo_id):
 
 def salvos(request):
     current_user = request.user
-
+    posts = current_user.salvos
     return render(request, "portal/salvos.html", {
-        'usuario': current_user.username
+        'posts': posts
     })
 
 def publicar(request):
@@ -163,8 +167,9 @@ def publicar(request):
     })
 
 def post(request, post_id):
+    post = Post.objects.get(id=post_id)
     return render(request, "portal/post.html", {
-        
+        'post': post
     })
 
 def criar_grupo(request):

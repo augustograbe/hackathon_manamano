@@ -15,7 +15,7 @@
                         <i class="material-icons">arrow_right_alt</i>
                     </div>
                 </a>
-                <a href="/perfil/{{ usuario }}" class=""><i class="material-icons">person</i>
+                <a href="{% url 'perfil' user.username %}" class=""><i class="material-icons">person</i>
                 </a>
                 <a href="#" class="settings">
                     <i class="material-icons">more_vert</i>
