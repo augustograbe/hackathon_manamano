@@ -1,4 +1,12 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    Configurações de grupo
+{% endblock %}
+
+{% block back %}
+    {% url 'grupo' grupo.id %}
+{% endblock %}
 
 {% block body %}
 

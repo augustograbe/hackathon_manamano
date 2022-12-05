@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
@@ -68,8 +69,10 @@ def register(request):
 
 def index(request):
     current_user = request.user
+    publicacoes = Post.objects.all()
     return render(request, "portal/index.html", {
-        'usuario': current_user.username
+        'usuario': current_user.username,
+        'publicacoes': publicacoes
     })
 
 
@@ -108,38 +111,48 @@ def editar_perfil(request, user_name):
         })
 
 def lista_categorias(request, grupo_id):
+    grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/lista_categorias.html", {
-        "grupo": Grupo.objects.get(id=grupo_id)
+        'grupo': grupo
     })
 
 def categoria(request, grupo_id, categoria_id):
+    categoria = Categoria.objects.get(id=categoria_id)
     return render(request, "portal/categoria.html", {
-        
+        'categoria': categoria,
+        'grupoid': grupo_id
     })
 
 def lista_grupos(request):
     current_user = request.user
+    grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) )
     return render(request, "portal/lista_grupos.html", {
-        'usuario': current_user.username
+        'usuario': current_user.username,
+        'grupos': grupos
     })
 
 def grupo(request, grupo_id):
+    current_user = request.user
+    grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/grupo.html", {
-        
+        'grupo': grupo
     })
 
 def sobre(request, grupo_id):
+    grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/sobre.html", {
-        
+        'grupo': grupo
     })
 
 def config_grupo(request, grupo_id):
+    grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/config_grupo.html", {
-        
+        'grupo': grupo
     })
 
 def salvos(request):
     current_user = request.user
+
     return render(request, "portal/salvos.html", {
         'usuario': current_user.username
     })
@@ -154,3 +167,33 @@ def post(request, post_id):
         
     })
 
+def criar_grupo(request):
+    if request.method == "POST":
+        form = grupo_form(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data["nome"]
+            descricao = form.cleaned_data["descricao"]
+            admin = request.user
+            novo_grupo = Grupo.objects.create(nome = nome, descricao = descricao)
+            novo_grupo.admin.add(admin)
+
+        return HttpResponseRedirect(reverse('index'))
+    else:  
+
+        return render(request, "portal/criar_grupo.html", {
+            'grupo_form': grupo_form()
+        })
+
+def criar_categoria(request, grupo_id):
+    grupo = Grupo.objects.get(id=grupo_id)
+    if request.method == "POST":
+        nome = request.POST["nome"]
+        nova_categoria = Categoria.objects.create(nome = nome)
+        grupo.categorias.add(nova_categoria)
+
+        return HttpResponseRedirect(reverse('index'))
+    else:  
+
+        return render(request, "portal/criar_categoria.html", {
+            'grupo': grupo
+        })

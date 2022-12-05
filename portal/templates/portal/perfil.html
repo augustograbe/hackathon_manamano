@@ -1,18 +1,34 @@
-{% extends "portal/layout.html" %}
-{% load static %}
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    {{ user_name }}
+{% endblock %}
+
+{% block back %}
+    {% url 'index' %}
+{% endblock %}
 
 
 {% block body %}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <a href="http://api.whatsapp.com/send?1=pt_BR&phone=55{{ numero}}"> <i id="whatsapp_icon" class="fa fa-whatsapp"></i>{{ numero }}</a>
+        </div>
+    </div>
 
-{{ user_name }}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <h3>Sobre:</h3>
+             {{ descricao }}
+        </div>
+    </div>
 
-{{ numero }}
-
-{{ descricao }}
-
-{% if editar_visivel %}
-    <a href="/editar_perfil/{{ user_name }}">editar perfil</a>
-{% endif %}
-
+    {% if editar_visivel %}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <i class="material-icons" id="grupo_icon">edit</i><a href="/editar_perfil/{{ user_name }}">Editar perfil</a>
+        </div>
+    </div>
+    {% endif %}
 
 {% endblock %}

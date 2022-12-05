@@ -1,0 +1,162 @@
+.main {
+    position: relative;
+}
+
+.corpo {
+    padding-top: 200px;
+}
+body{
+    background-color: whitesmoke;
+}
+
+.bloco_lista_grupo{
+    width: 90%;
+    height: 150px;
+    margin: auto;
+    border-bottom: 3px solid #477890;
+    font-size: 2.5rem;
+    color: #747474;
+    padding: 30px;
+}
+.bloco_lista_grupo span{
+    padding-left: 50px;
+    float:left;
+    padding-top: 15px;
+    font-weight: bold;
+}
+
+
+#grupo_seta{
+    float: right;
+}
+
+.bloco_lista_grupo i{
+    font-size: 5rem;
+}
+
+#grupo_icon{
+    float:left;
+}
+
+.blocos{
+    background-color: white;
+    width: 100%;
+    padding: 3%;
+    border-bottom: 1px solid grey;
+    box-shadow: 0 0 30px #ccc;
+    margin-top: 25px;
+}
+
+.descricao_grupo{
+    margin: auto;
+    width: 90%;
+    font-size: 2.3rem;
+}
+
+.descricao_grupo h3{
+    font-size: 2.5rem;
+}
+
+.descricao_grupo a, .descricao_grupo i{
+    color: #477890;
+}
+
+.descricao_grupo i{
+    font-size: 4rem;
+    padding-right: 15px;
+}
+
+.descricao_grupo ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.descricao_grupo li{
+    list-style-type: none;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid grey;
+}
+
+.descricao_grupo li i{
+    font-size: 5rem;
+    color: #747474;
+}
+.descricao_grupo li {
+    font-size: 2.5rem;
+}
+
+.descricao_grupo li span{
+    font-size: 2.2rem;
+    color: #747474;
+    float: right;
+}
+
+#whatsapp_icon{
+    font-size: 5.5rem;
+    color: green;
+    padding-right: 30px;
+}
+
+#telefone_perfil{
+    margin-left: 10px;
+    font-size: 2.5rem;
+    padding-top: 0;
+    color: #477890;
+}
+
+ /* -------------------------------------------------- */
+
+.publicacao{
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 0 30px #ccc;
+    border-radius: 60px;
+    height: 310px;
+    background-color: #CDDDDD;
+    margin-top: 50px;
+}
+
+.titulo_post{
+    height: 60px;
+    border-radius: 60px 60px 0 0 ;
+    background-color: #477890;
+    font-size: 2.2rem;
+    color: white;
+    font-weight: 600;
+    padding-left: 40px;
+}
+
+.resumo_post{
+    font-size: 2.1rem;
+    padding: 10px 40px 10px 40px;
+    overflow: hidden;
+    font-weight: 500;
+    height: 160px;
+    /*text-overflow: ellipsis;
+    white-space: nowrap;*/
+    display: -webkit-box;   
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.bottom_post{
+    margin-top: 10px;
+    padding-left: 40px;
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #477890;
+}
+
+.bottom_post i{
+    font-size: 4rem;
+    padding-right: 10px;
+}
+
+.bottom_post span{
+    margin-top: 10px;
+    padding-right: 40px;
+    float: right;   
+    font-size: 1.8rem;
+    color: #747474;
+}

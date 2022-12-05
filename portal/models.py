@@ -25,10 +25,10 @@ class Grupo(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
-    categorias = models.ManyToManyField(Categoria)
+    categorias = models.ManyToManyField(Categoria, blank = True)
     usuarios = models.ManyToManyField(User, related_name='grupo_usuarios')
     admin = models.ManyToManyField(User, related_name='grupo_admin')
     #aberto = models.BooleanField(default=True)
     #codigo = 
-    #foto
+    #foto 
 

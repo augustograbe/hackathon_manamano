@@ -5,13 +5,23 @@
         <title>{% block title %}Portal{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'portal/styles.css' %}" rel="stylesheet">
+        {% block style%}
+        {% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
         {% if user.is_authenticated %}
         {% else %}
         {% endif %}
-        {% block body %}
-        {% endblock %}
-        
+        <div class="main">
+            {% block nav%}
+            {% endblock %}
+            <div class="corpo">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
     </body>
 </html>

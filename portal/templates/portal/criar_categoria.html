@@ -1,19 +1,18 @@
 {% extends "portal/navbar_3.html" %}
 
 {% block nome %}
-    Novo grupo
+    {{ grupo.nome }} / Nova categoria
 {% endblock %}
 
 {% block back %}
-    {% url 'lista_grupos' %}
+    {% url 'lista_categorias' grupo.id %}
 {% endblock %}
 
 {% block body %}
 
-<form action="{% url 'criar_grupo' %}" method="post">
+<form action="{% url 'criar_categoria' grupo.id %}" method="post">
     {% csrf_token %}
-    {{ grupo_form.nome }}
-    {{ grupo_form.descricao }}
+    <input autofocus type="text" name="nome" placeholder="Nome da categoria">
     <div id="editar_perfil">
         <input type="submit" class="btn btn-primary" value="Criar">
     </div>

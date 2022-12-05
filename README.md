@@ -14,3 +14,5 @@ execute:
 > python manage.py migrate
 
 > python manage.py runserver
+
+Responsivo apenas para celular

@@ -1,9 +1,22 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_2.html" %}
 
-
+{% block grupo %}
+{{ grupo.nome }}
+{% endblock %}
 
 
 {% block body %}
-{{ grupo.nome }}
+
+{% for categoria in grupo.categorias.all %}
+    <a href="{% url 'categoria' grupo.id categoria.id %}">
+        <div class="bloco_lista_grupo"><i class="material-icons" id="grupo_icon">category</i><span>{{ categoria.nome }}</span><i id="grupo_seta" class="material-icons">arrow_forward_ios</i></div>
+    </a>
+{% endfor %}
+
+<a href="{% url 'criar_categoria' grupo.id %}">
+    <div class="bloco_lista_grupo"><i class="material-icons" id="grupo_icon">add</i><span>Criar nova categoria</span></div>
+</a>
+
+
 
 {% endblock %}

@@ -1,22 +1,26 @@
-{% extends "portal/layout.html" %}
-{% load static %}
+{% extends "portal/navbar_3.html" %}
 
+{% block nome %}
+    Editar perfil
+{% endblock %}
+
+{% block back %}
+    {% url 'perfil' user_name %}
+{% endblock %}
 
 {% block body %}
 
-{{ user_name }}
+    {{ numero }}
 
-{{ numero }}
+    {{ descricao }}
 
-{{ descricao }}
-
-<form action="{% url 'editar_perfil' user_name %}" method="post">
-    {% csrf_token %}
-    {{ perfil_form.numero }}
-    {{ perfil_form.descricao }}
-    <div id="editar_perfil">
-        <input type="submit" class="btn btn-primary" value="Editar">
-    </div>
-</form>
+    <form action="{% url 'editar_perfil' user_name %}" method="post">
+        {% csrf_token %}
+        {{ perfil_form.numero }}
+        {{ perfil_form.descricao }}
+        <div id="editar_perfil">
+            <input type="submit" class="btn btn-primary" value="Editar">
+        </div>
+    </form>
 
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends "portal/layout.html" %}
+{% load static %}
+{% block style %}<link href="{% static 'portal/navbar.css' %}" rel="stylesheet">{% endblock %}
+
+{% block nav %}
+    <nav id="nav" class="nav">
+        <div id="navbar">
+            <div class="logo">
+                <img src="{% static 'portal/logo.svg' %}" alt="Manamano" width="260">
+            </div>
+            <div class="control-buttons">
+                <a href="#" class="search"><i class="material-icons">search</i>
+                    <div id="search-box">
+                        <input type="text" class="search-form" placeholder="Search...">
+                        <i class="material-icons">arrow_right_alt</i>
+                    </div>
+                </a>
+                <a href="/perfil/{{ usuario }}" class=""><i class="material-icons">person</i>
+                </a>
+                <a href="#" class="settings">
+                    <i class="material-icons">more_vert</i>
+                    <div id="settings-box">
+                        <ul>
+                            <li>Configurações</li>
+                            <li>Sair</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <ul class="menu-below">
+            <li class="camera">
+                <a href="{% url 'publicar' %}"><i class="material-icons">post_add</i></a>
+            </li>
+            <li><a class="{% if request.resolver_match.url_name == 'index' %}ativo{% endif %}" href="{% url 'index' %}">Mural</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'lista_grupos' %}ativo{% endif %}" href="{% url 'lista_grupos' %}" >Grupos</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'salvos' %}ativo{% endif %}" href="{% url 'salvos' %}">Salvos</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+

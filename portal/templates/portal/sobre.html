@@ -1,5 +1,37 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_2.html" %}
+
+{% block grupo %}
+    {{ grupo.nome }}
+{% endblock %}
 
 {% block body %}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <h3>Descrição:</h3>
+            {{ grupo.descricao }}
+        </div>
+    </div>  
+    {% if user in grupo.admin.all %}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <i class="material-icons" id="grupo_icon">settings</i><a href="{% url 'configg' grupo.id %}">Configurações do grupo</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <h3>Membros:</h3>
+            <ul>
+            {% for usuario in grupo.admin.all %}
+                <a href="../../perfil/{{usuario.username}}"><li><i class="material-icons" id="grupo_icon">account_circle</i>{{ usuario.username }}<span>Admin</span></li></a>
+            {% endfor %}
+            {% for usuario in grupo.usuarios.all %}
+                <a href="../../perfil/{{usuario.username}}"><li><i class="material-icons" id="grupo_icon">account_circle</i>{{ usuario.username }}</li></a>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 
 {% endblock %}

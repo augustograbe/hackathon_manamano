@@ -1,4 +1,14 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    {{ categoria.nome }}
+{% endblock %}
+
+{% block back %}
+    {% url 'grupo' grupoid %}
+{% endblock %}
+
+
 
 {% block body %}
 

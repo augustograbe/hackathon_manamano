@@ -1,0 +1,32 @@
+{% extends "portal/layout.html" %}
+{% load static %}
+{% block style %}<link href="{% static 'portal/navbar.css' %}" rel="stylesheet">{% endblock %}
+
+{% block nav %}
+    <nav id="nav" class="nav">
+        <div id="navbar">
+            <a href="{% url 'lista_grupos' %}" class="arrow_back"><i class="material-icons">arrow_back</i></a>
+            <div class="logo">
+                {% block grupo %}
+                {% endblock %}
+            </div>
+            <div class="control-buttons" id="lupa">
+                <a href="#" class="search"><i class="material-icons">search</i>
+                    <div id="search-box">
+                        <input type="text" class="search-form" placeholder="Search...">
+                        <i class="material-icons">arrow_right_alt</i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <ul class="menu-below">
+            <li class="camera">
+                <a href="{% url 'publicar' %}"><i class="material-icons">post_add</i></a>
+            </li>
+            <li><a class="{% if request.resolver_match.url_name == 'grupo' %}ativo{% endif %}" href="{% url 'grupo' grupo.id %}">Mural</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'lista_categorias' %}ativo{% endif %}" href="{% url 'lista_categorias' grupo.id %}">Categorias</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'sobre' %}ativo{% endif %}" href="{% url 'sobre' grupo.id %}">Sobre</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+

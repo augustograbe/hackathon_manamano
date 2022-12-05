@@ -1,0 +1,16 @@
+{% extends "portal/layout.html" %}
+{% load static %}
+{% block style %}<link href="{% static 'portal/navbar.css' %}" rel="stylesheet">{% endblock %}
+
+{% block nav %}
+    <nav id="nav" class="nav">
+        <div id="navbar">
+            <a href="{% block back %}{% endblock %}" class="arrow_back"><i class="material-icons">arrow_back</i></a>
+            <div class="logo">
+                {% block nome %}
+                {% endblock %}
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+

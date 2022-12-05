@@ -1,9 +1,15 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_1.html"%}
 
 {% block body %}
-<a href="/perfil/{{ usuario }}">perfil</a>
-<a href="{% url 'index' %}">index</a>
-<a href="{% url 'publicar' %}">publicar</a>
-<a href="{% url 'salvos' %}">salvos</a>
+
+{% for grupo in grupos %}
+    <a href="/grupo/{{ grupo.id }}">
+        <div class="bloco_lista_grupo"><i class="material-icons" id="grupo_icon">groups</i><span>{{ grupo.nome }}</span><i id="grupo_seta" class="material-icons">arrow_forward_ios</i></div>
+    </a>
+{% endfor %}
+
+<a href="{% url 'criar_grupo' %}">
+    <div class="bloco_lista_grupo"><i class="material-icons" id="grupo_icon">group_add</i><span>Criar novo grupo</span></div>
+</a>
 
 {% endblock %}
