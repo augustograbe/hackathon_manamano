@@ -67,6 +67,7 @@ def register(request):
 
 #------
 
+@login_required
 def index(request):
     current_user = request.user
     grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) ).distinct()
@@ -77,7 +78,7 @@ def index(request):
         'publicacoes': publicacoes
     })
 
-
+@login_required
 def perfil(request, user_name):
     user_profile = User.objects.get(username=user_name)
     current_user = request.user
@@ -90,6 +91,7 @@ def perfil(request, user_name):
         'editar_visivel': editar_visivel
     })
 
+@login_required
 def editar_perfil(request, user_name):
     user_profile = User.objects.get(username=user_name)
     current_user = request.user
@@ -112,12 +114,14 @@ def editar_perfil(request, user_name):
             'perfil_form': perfil_form()
         })
 
+@login_required
 def lista_categorias(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/lista_categorias.html", {
         'grupo': grupo
     })
 
+@login_required
 def categoria(request, grupo_id, categoria_id):
     categoria = Categoria.objects.get(id=categoria_id)
     return render(request, "portal/categoria.html", {
@@ -125,6 +129,7 @@ def categoria(request, grupo_id, categoria_id):
         'grupoid': grupo_id
     })
 
+@login_required
 def lista_grupos(request):
     current_user = request.user
     grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) )
@@ -133,6 +138,7 @@ def lista_grupos(request):
         'grupos': grupos
     })
 
+@login_required
 def grupo(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
     categorias = grupo.categorias.all()
@@ -142,18 +148,21 @@ def grupo(request, grupo_id):
         'posts': posts
     })
 
+@login_required
 def sobre(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/sobre.html", {
         'grupo': grupo
     })
 
+@login_required
 def config_grupo(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
     return render(request, "portal/config_grupo.html", {
         'grupo': grupo
     })
 
+@login_required
 def salvos(request):
     current_user = request.user
     posts = current_user.salvos
@@ -161,17 +170,20 @@ def salvos(request):
         'posts': posts
     })
 
+@login_required
 def publicar(request):
     return render(request, "portal/publicar.html", {
         
     })
 
+@login_required
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, "portal/post.html", {
         'post': post
     })
 
+@login_required
 def criar_grupo(request):
     if request.method == "POST":
         form = grupo_form(request.POST)
@@ -189,6 +201,7 @@ def criar_grupo(request):
             'grupo_form': grupo_form()
         })
 
+@login_required
 def criar_categoria(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
     if request.method == "POST":
