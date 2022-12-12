@@ -9,8 +9,26 @@
 {% endblock %}
 
 {% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        {% if post.importante %}
+            <input type="submit" name="importante" value="Desfixar" />
+        {% else %}
+            <input type="submit" name="importante" value="Fixar no mural" />
+        {% endif %}
+    </form>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% if post in user.salvos.all %}
+            <input type="submit" name="salvar" value="Deletar de salvos" />
+        {% else %}
+            <input type="submit" name="salvar" value="Adicionar a salvos" />
+        {% endif %}
+    </form>
+
     {{ post.autor }}
     {{ post.data}}
     {{ post.publicacao }}
-
+    
 {% endblock %}

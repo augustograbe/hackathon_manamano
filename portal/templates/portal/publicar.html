@@ -1,6 +1,23 @@
-{% extends "portal/layout.html" %}
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    Publicar
+{% endblock %}
+
+{% block back %}
+    {% url 'index' %}
+{% endblock %}
 
 {% block body %}
-<a href="{% url 'index' %}">index</a>
+
+    <form action="{% url 'publicar' %}" method="post">
+        {% csrf_token %}
+        {{ post_form.titulo }}
+        {{ post_form.texto }}
+        <div id="editar_perfil">
+            <input type="submit" class="btn btn-primary" value="Publicar">
+        </div>
+    </form>
+
 
 {% endblock %}

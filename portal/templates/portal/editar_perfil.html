@@ -14,7 +14,7 @@
 
     {{ descricao }}
 
-    <form action="{% url 'editar_perfil' user_name %}" method="post">
+    <form action="{% url 'editar_perfil'%}" method="post">
         {% csrf_token %}
         {{ perfil_form.numero }}
         {{ perfil_form.descricao }}

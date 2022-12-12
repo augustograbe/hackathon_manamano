@@ -3,7 +3,7 @@
 }
 
 .corpo {
-    padding-top: 200px;
+    padding-top: 235px;
 }
 body{
     background-color: whitesmoke;
@@ -53,7 +53,7 @@ body{
     font-size: 2.3rem;
 }
 
-.descricao_grupo h3{
+h3{
     font-size: 2.5rem;
 }
 
@@ -89,7 +89,6 @@ body{
 .descricao_grupo li span{
     font-size: 2.2rem;
     color: #747474;
-    float: right;
 }
 
 #whatsapp_icon{
@@ -112,19 +111,20 @@ body{
     margin: auto;
     box-shadow: 0 0 30px #ccc;
     border-radius: 60px;
-    height: 310px;
+    height: 320px;
     background-color: #CDDDDD;
     margin-top: 50px;
 }
 
 .titulo_post{
-    height: 60px;
+    height: 70px;
     border-radius: 60px 60px 0 0 ;
     background-color: #477890;
     font-size: 2.2rem;
     color: white;
     font-weight: 600;
     padding-left: 40px;
+    padding-top: 10px;
 }
 
 .resumo_post{
@@ -161,3 +161,40 @@ body{
     font-size: 1.8rem;
     color: #747474;
 }
+
+
+#grupo_op_icon{
+    float: right; 
+}
+.grupo_user{
+    display: none;
+    z-index: 15;
+    position: absolute;
+    float: right;
+    background: white;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    padding: 20px;
+    right: 5%;
+    -webkit-box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
+    box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
+}
+
+.mais_op:active .grupo_user, .mais_op:focus .grupo_user{
+    display: block;
+}
+.mais_op{
+    float:right;
+}
+
+
+
+/* Tornar Responsivo para desktop ---------------------- */
+@media only screen and (min-width: 1000px) {
+    body {
+        zoom: 0.4;
+    }
+}
+
+
+

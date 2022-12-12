@@ -24,10 +24,45 @@
             <h3>Membros:</h3>
             <ul>
             {% for usuario in grupo.admin.all %}
-                <a href="../../perfil/{{usuario.username}}"><li><i class="material-icons" id="grupo_icon">account_circle</i>{{ usuario.username }}<span>Admin</span></li></a>
+                <li><a href="../../perfil/{{usuario.username}}"><i class="material-icons" id="grupo_icon">account_circle</i>
+                {{ usuario.username }}</a>
+                {% if user in grupo.admin.all %}
+                    <a href="#" class="mais_op">
+                        <span>Admin</span>
+                        <i class="material-icons" id="grupo_op_icon">more_vert</i>
+                        <div class="grupo_user" >
+                            <form method="POST">
+                                {% csrf_token %}
+                                <ul>
+                                    <input type="hidden" name="usuario" value="{{ usuario }}">
+                                    <li><input type="submit" name="toggle_Admins" value="Remover dos Admins"/></li>
+                                    <li><input type="submit" name="remover_do_grupo" value="Remover do grupo"/></li>
+                                </ul>
+                            </form>
+                        </div>
+                    </a>
+                {% endif %}
+                </li>
             {% endfor %}
             {% for usuario in grupo.usuarios.all %}
-                <a href="../../perfil/{{usuario.username}}"><li><i class="material-icons" id="grupo_icon">account_circle</i>{{ usuario.username }}</li></a>
+                <a href="../../perfil/{{usuario.username}}"><li><i class="material-icons" id="grupo_icon">account_circle</i>
+                {{ usuario.username }}</a>
+                {% if user in grupo.admin.all %}
+                    <a href="#" class="mais_op">
+                        <i class="material-icons" id="grupo_op_icon">more_vert</i>
+                        <div class="grupo_user" >
+                            <form method="POST">
+                                {% csrf_token %}
+                                <ul>
+                                    <input type="hidden" name="usuario" value="{{ usuario }}">
+                                    <li><input type="submit" name="toggle_Admins" value="Adiconar aos Admins"/></li>
+                                    <li><input type="submit" name="remover_do_grupo" value="Remover do grupo"/></li>
+                                </ul>
+                            </form>
+                        </div>
+                    </a>
+                {% endif %}
+                </li>
             {% endfor %}
             </ul>
         </div>

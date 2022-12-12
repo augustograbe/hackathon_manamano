@@ -23,6 +23,7 @@ font-size: 2.5rem;
 font-weight: bold;
 color: white;
 margin: 20px;
+padding: 10px 0 20px 30px;
 }
 
 #nav #navbar {
@@ -34,13 +35,15 @@ padding-top: 10px;
 }
 
 #nav #navbar .control-buttons {
-float: right;
+    float: right;
+    padding: 10px;
 }
 
 #nav #navbar .control-buttons a {
 color: white;
 padding: 15px;
 display: inline-block;
+padding-left: 20px;
 }
 
 #nav #navbar .control-buttons a:focus:active, #nav #navbar .control-buttons a:active:active {
@@ -138,7 +141,7 @@ color: #2274A5;
 width: 100%;
 border: 0;
 outline: 0;
-padding: 10px 10px 10px 60px;
+padding: 20px 10px 20px 60px;
 font-size: 25px;
 font-size: 2.5rem;
 color: #747474;
@@ -238,7 +241,8 @@ border: 0;
 outline: 0;
 padding: 10px 10px 10px 60px;
 font-size: 25px;
-font-size: 1.5625rem;
+font-size: 1.8rem;
+padding: 10px;
 color: #747474;
 caret-color: #477890;
 -webkit-transition: 0.2s;
@@ -357,3 +361,11 @@ font-size: 4rem;
     padding-right: 30px;
 }
 
+.btn-pesquisar{
+    float: right;
+    font-size: 1.9rem;
+    padding: 15px 30px 20px 40px;
+    background-color: #fff;
+    border-radius: 0 0 0 25px;
+    font-weight: bold;
+}

@@ -9,7 +9,7 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
     path("perfil/<str:user_name>", views.perfil, name="perfil"),
-    path("editar_perfil/<str:user_name>", views.editar_perfil, name="editar_perfil"),
+    path("editar_perfil", views.editar_perfil, name="editar_perfil"),
     path("lista_categorias/<str:grupo_id>", views.lista_categorias, name="lista_categorias"),
     path("categoria/<str:grupo_id>/<str:categoria_id>", views.categoria, name="categoria"),
     path("lista_grupos", views.lista_grupos, name="lista_grupos"),
@@ -20,8 +20,14 @@ urlpatterns = [
     path("configg/<str:grupo_id>", views.config_grupo, name="configg"),
     path("salvos", views.salvos, name="salvos"),
     path("publicar", views.publicar, name="publicar"),
-    path("post/<str:post_id>", views.post, name="post"), 
+    path("post/<str:post_id>", views.post, name="post"),
+    path("escolher_grupo/<str:post_id>", views.escolher_grupo, name="escolher_grupo"),
+    path("pesquisar", views.pesquisar, name="pesquisar"),
+    #pesquisar
     # api
-    #path("criar_categoria")
+    #path("salvar")
+    #path("desguardar")
+    #path("marcar")
+    #path("desmarcar")
 
 ]

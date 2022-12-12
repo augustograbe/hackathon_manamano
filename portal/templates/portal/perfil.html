@@ -26,7 +26,7 @@
     {% if editar_visivel %}
     <div class="blocos">
         <div class="descricao_grupo">
-            <i class="material-icons" id="grupo_icon">edit</i><a href="/editar_perfil/{{ user_name }}">Editar perfil</a>
+            <i class="material-icons" id="grupo_icon">edit</i><a href="{% url 'editar_perfil'%}">Editar perfil</a>
         </div>
     </div>
     {% endif %}

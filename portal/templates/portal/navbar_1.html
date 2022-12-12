@@ -6,13 +6,16 @@
     <nav id="nav" class="nav">
         <div id="navbar">
             <div class="logo">
-                <img src="{% static 'portal/logo.svg' %}" alt="Manamano" width="260">
+                <img src="{% static 'portal/logo.svg' %}" alt="Manamano" width="280">
             </div>
             <div class="control-buttons">
                 <a href="#" class="search"><i class="material-icons">search</i>
                     <div id="search-box">
-                        <input type="text" class="search-form" placeholder="Search...">
-                        <i class="material-icons">arrow_right_alt</i>
+                        <form action="{% url 'pesquisar' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="termo" class="search-form" placeholder="Buscar...">
+                            <input type="submit" class="btn-pesquisar" value="Buscar" >
+                        </form>
                     </div>
                 </a>
                 <a href="{% url 'perfil' user.username %}" class=""><i class="material-icons">person</i>

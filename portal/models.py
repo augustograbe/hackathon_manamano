@@ -15,6 +15,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=100)
     data = models.DateTimeField(auto_now_add=True)
     publicacao = models.TextField()
+    importante = models.BooleanField(default=False)
 
 class Categoria(models.Model):
     id = models.AutoField(primary_key=True)

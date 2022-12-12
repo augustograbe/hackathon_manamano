@@ -1,0 +1,60 @@
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    {{ pesquisa }}
+{% endblock %}
+
+{% block back %}
+    {% url 'index' %}
+{% endblock %}
+
+{% block body %}
+<div class="blocos">
+    
+    <h3>Grupos:</h3>
+    {% for grupo in grupos %}
+        <a href="/grupo/{{ grupo.id }}">
+            <div class="bloco_lista_grupo">
+                <i class="material-icons" id="grupo_icon">groups</i>
+                <span>{{ grupo.nome }}</span>
+                <i id="grupo_seta" class="material-icons">arrow_forward_ios</i>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="blocos">
+    <h3>Usuários:</h3>
+    <div class="descricao_grupo">
+       
+        <ul>
+            {% for usuario in usuarios %}
+            <li>
+                <a href="../../perfil/{{usuario.username}}">
+                    <i class="material-icons" id="grupo_icon">account_circle</i>
+                    {{ usuario.username }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="blocos">
+    <h3>Publicações:</h3>
+    {% for post in posts %}
+        <div class="publicacao">
+            <a href="{% url 'post' post.id %}">
+                <div class="titulo_post">
+                    {{ post.titulo }}
+                    {% if post.importante %}
+                    importante
+                    {% endif %}
+                </div>
+                <div class="resumo_post">{{ post.publicacao }}</div>
+            </a>
+            <div class="bottom_post"><i class="material-icons" id="grupo_icon">account_circle</i>{{ post.autor }}<span>{{ post.data }}</span></div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

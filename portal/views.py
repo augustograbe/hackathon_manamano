@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.db.models import Q
+from django.shortcuts import redirect
 
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
@@ -49,7 +50,7 @@ def register(request):
         confirmation = request.POST["confirmation"]
         if password != confirmation:
             return render(request, "portal/registrar.html", {
-                "message": "Passwords must match."
+                "message": "As senhas devem ser iguais."
             })
 
         # Attempt to create new user
@@ -60,6 +61,8 @@ def register(request):
             return render(request, "portal/registrar.html", {
                 "message": "Nome de usuário já em uso"
             })
+        grupo_manamano = Grupo.objects.get(id=1)
+        grupo_manamano.usuarios.add(user)
         login(request, user)
         return HttpResponseRedirect(reverse("editar_perfil"))
     else:
@@ -72,8 +75,8 @@ def index(request):
     current_user = request.user
     grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) ).distinct()
     categorias = Categoria.objects.filter(grupo__in=grupos).distinct()
-    publicacoes = Post.objects.filter(categoria__in=categorias).distinct()
-    #publicacoes = Post.objects.all()
+    publicacoes = Post.objects.filter(categoria__in=categorias).distinct().order_by('-importante','-data')
+    #publicacoes = Post.objects.all().order_by('-importante','-data')
     return render(request, "portal/index.html", {
         'publicacoes': publicacoes
     })
@@ -92,9 +95,10 @@ def perfil(request, user_name):
     })
 
 @login_required
-def editar_perfil(request, user_name):
-    user_profile = User.objects.get(username=user_name)
+def editar_perfil(request):
+    #user_profile = User.objects.get(username=user_name)
     current_user = request.user
+    user_profile = current_user 
     if request.method == "POST":
         form = perfil_form(request.POST)
         if form.is_valid():
@@ -108,7 +112,7 @@ def editar_perfil(request, user_name):
     else:  
 
         return render(request, "portal/editar_perfil.html", {
-            'user_name': user_name,
+            'user_name': current_user.username,
             'numero': user_profile.numero,
             'descricao': user_profile.descricao,
             'perfil_form': perfil_form()
@@ -151,7 +155,20 @@ def grupo(request, grupo_id):
 @login_required
 def sobre(request, grupo_id):
     grupo = Grupo.objects.get(id=grupo_id)
-    return render(request, "portal/sobre.html", {
+    if request.method == 'POST':
+        nome_usuario = request.POST["usuario"]
+        usuario = User.objects.get(username = nome_usuario)
+        if 'toggle_Admins' in request.POST:
+            if usuario in grupo.admin.all():
+                grupo.admin.remove(usuario)
+                grupo.usuarios.add(usuario)
+            else:
+                grupo.admin.add(usuario)
+                grupo.usuarios.remove(usuario)
+        elif 'remover_do_grupo' in request.POST:
+            grupo.admin.remove(usuario)
+            grupo.usuarios.remove(usuario)
+    return render(request, "portal/sobre.html", {   
         'grupo': grupo
     })
 
@@ -172,13 +189,64 @@ def salvos(request):
 
 @login_required
 def publicar(request):
-    return render(request, "portal/publicar.html", {
-        
-    })
+    novo_post = None
+    if request.method == "POST":
+        form = post_form(request.POST)
+        print("Passou")
+        if form.is_valid():
+            print("Valido 1")
+            titulo = form.cleaned_data["titulo"]
+            publicacao = form.cleaned_data["texto"]
+            print("Valido 2")
+            autor = request.user
+            novo_post = Post.objects.create(titulo = titulo, publicacao = publicacao, autor = autor )
+            print("Passou")
+        else:
+            print(form.errors)
+        if novo_post is not None:
+            return redirect('escolher_grupo', post_id = novo_post.id)
+        else:
+            return redirect('index')
+    else:
+
+        return render(request, "portal/publicar.html", {
+            'post_form': post_form()
+        })
+
+@login_required
+def escolher_grupo(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        categoria_inputs = request.POST.getlist("categoria_inputs")
+        for categoria_nome in categoria_inputs:
+            categoria_selecionada = Categoria.objects.get(nome = categoria_nome)
+            categoria_selecionada.posts.add(post)
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        current_user = request.user
+        grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) )
+        return render(request, 'portal/escolher_grupo.html', {
+            'grupos': grupos,
+            'post_id': post_id
+        })
+
 
 @login_required
 def post(request, post_id):
+    current_user = request.user
     post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        if 'salvar' in request.POST:
+            if post in current_user.salvos.all():
+                # Deletar o post de salvos do usuário
+                current_user.salvos.remove(post)
+            else:
+                # Adicionar o post em salvos do usuário
+                current_user.salvos.add(post)
+        else:
+            post.importante = not post.importante
+            post.save()
+        
     return render(request, "portal/post.html", {
         'post': post
     })
@@ -215,3 +283,16 @@ def criar_categoria(request, grupo_id):
         return render(request, "portal/criar_categoria.html", {
             'grupo': grupo
         })
+
+@login_required
+def pesquisar(request):
+    termo = request.POST["termo"]
+    grupos = Grupo.objects.filter( nome__contains = termo )
+    usuarios = User.objects.filter( username__contains = termo )
+    posts = Post.objects.filter(Q(titulo__contains = termo) | Q(publicacao__contains = termo)).order_by('-importante','-data')
+    return render(request, "portal/pesquisa.html", {
+        'grupos': grupos,
+        'usuarios': usuarios,
+        'posts': posts,
+        'pesquisa': termo
+    })

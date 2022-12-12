@@ -1,0 +1,31 @@
+{% extends "portal/navbar_3.html" %}
+
+{% block nome %}
+    Onde vou publicar
+{% endblock %}
+
+{% block back %}
+    {% url 'index' %}
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'escolher_grupo' post_id %}" method="post">
+        {% csrf_token %}
+        {% for grupo in grupos %}
+            <div class="bloco_lista_grupo">
+                <i class="material-icons" id="grupo_icon">groups</i>
+                <span>{{ grupo.nome }}</span>
+                <i id="grupo_seta" class="material-icons">arrow_forward_ios</i>
+            </div>
+            {% for categoria in grupo.categorias.all %}
+                <div class="bloco_lista_grupo">
+                    <i class="material-icons" id="grupo_icon">category</i>
+                    <span><label for="categoria_inputs"> {{ categoria.nome }}</label></span>
+                    <input type="checkbox" name="categoria_inputs" value="{{ categoria.nome }}">
+                    <i id="grupo_seta" class="material-icons">arrow_forward_ios</i>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
