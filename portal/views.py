@@ -12,6 +12,8 @@ from django import forms
 from .models import *
 from .forms import *
 
+from itertools import chain
+
 
 # Login
 def login_view(request):
@@ -282,14 +284,37 @@ def criar_categoria(request, grupo_id):
         })
 
 @login_required
-def pesquisar(request):
-    termo = request.POST["termo"]
-    grupos = Grupo.objects.filter( nome__contains = termo )
-    usuarios = User.objects.filter( username__contains = termo )
-    posts = Post.objects.filter(Q(titulo__contains = termo) | Q(publicacao__contains = termo)).order_by('-importante','-data')
+def pesquisar(request, grupo_id):
+    if grupo_id=="-1":
+        print("entrei")
+        termo = request.POST["termo"]
+        grupos = Grupo.objects.filter(nome__contains=termo)
+        usuarios = User.objects.filter(username__contains=termo)
+        posts = Post.objects.filter(Q(titulo__contains=termo) | Q(publicacao__contains=termo)).order_by('-importante', '-data')
+        return render(request, "portal/pesquisa.html", {
+            'grupos': grupos,
+            'usuarios': usuarios,
+            'posts': posts,
+            'pesquisa': termo
+        })
+    else:
+        termo = request.POST["termo"]
+        grupo = Grupo.objects.get(id=grupo_id)
+        usuariosComuns = grupo.usuarios.all().filter(username__contains=termo)
+        admins = grupo.admin.all().filter(username__contains=termo)
+        usuarios = list(chain(usuariosComuns,admins))
+        categorias = grupo.categorias.all()
+        posts = Post.objects.filter(Q(Q(titulo__contains=termo) | Q(publicacao__contains=termo)) & Q(categoria__in = categorias)).order_by('-importante', '-data')
+        return render(request, "portal/pesquisa.html", {
+            'usuarios': usuarios,
+            'posts': posts,
+            'pesquisa': termo
+        })
+
+@login_required
+def postsAutor(request,autor_id):
+    posts = Post.objects.filter(autor=autor_id)
     return render(request, "portal/pesquisa.html", {
-        'grupos': grupos,
-        'usuarios': usuarios,
         'posts': posts,
-        'pesquisa': termo
     })
+
