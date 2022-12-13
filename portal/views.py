@@ -100,13 +100,11 @@ def editar_perfil(request):
     current_user = request.user
     user_profile = current_user 
     if request.method == "POST":
-        form = perfil_form(request.POST)
-        if form.is_valid():
-            numero = form.cleaned_data["numero"]
-            descricao = form.cleaned_data["descricao"]
-            user_profile.numero = numero
-            user_profile.descricao = descricao
-            user_profile.save()
+        numero = request.POST["numero"]
+        descricao = request.POST["descricao"]
+        user_profile.numero = numero
+        user_profile.descricao = descricao
+        user_profile.save()
 
         return HttpResponseRedirect(reverse('index'))
     else:  
@@ -114,8 +112,7 @@ def editar_perfil(request):
         return render(request, "portal/editar_perfil.html", {
             'user_name': current_user.username,
             'numero': user_profile.numero,
-            'descricao': user_profile.descricao,
-            'perfil_form': perfil_form()
+            'descricao': user_profile.descricao
         })
 
 @login_required

@@ -443,6 +443,28 @@ h3{
     color: #EF4136;
 }
 
+/*------------editar-perfil------*/
+#editar-perfil input{
+    font-size: 2.2rem;
+    border-radius: 10px;
+    border: 2px solid #8e8e8e;
+    width: 60%;
+    padding: 10px;
+    padding-left: 30px;
+}
+#editar-perfil textarea{
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #8e8e8e;
+    padding: 10px;
+    padding-left: 30px;
+}
+#editar-perfil-baixo{
+    text-align: center;
+}
+#editar-perfil-baixo .botao-publicar{
+    float: none;
+}
 /* Tornar Responsivo para desktop ---------------------- */
 @media only screen and (min-width: 1000px) {
     body {

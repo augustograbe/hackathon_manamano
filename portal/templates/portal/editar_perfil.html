@@ -9,18 +9,27 @@
 {% endblock %}
 
 {% block body %}
-
-    {{ numero }}
-
-    {{ descricao }}
-
-    <form action="{% url 'editar_perfil'%}" method="post">
-        {% csrf_token %}
-        {{ perfil_form.numero }}
-        {{ perfil_form.descricao }}
-        <div id="editar_perfil">
-            <input type="submit" class="btn btn-primary" value="Editar">
-        </div>
-    </form>
-
-{% endblock %}
+    <div id="editar-perfil">
+        
+        <form action="{% url 'editar_perfil'%}" method="post">
+            {% csrf_token %}
+            <div class="blocos">
+                <div class="descricao_grupo">
+                    <h3>Telefone:</h3>
+                    <input type="text" name="numero" value="{{ numero }}">
+                    <!--{{ perfil_form.numero }}-->
+                </div>
+            </div>
+            <div class="blocos">
+                <div class="descricao_grupo">
+                    <h3>Sobre:</h3>
+                    <textarea rows="8" name="descricao">{{ descricao }}</textarea>
+                    <!-- {{ perfil_form.descricao }} -->
+                </div>
+            </div>
+            <div id="editar-perfil-baixo">
+                <input type="submit" class="botao-publicar" value="Editar">
+            </div>
+        </form>
+    </div>
+{% endblock %}  
