@@ -28,7 +28,7 @@ def youtube_embed(text):
 
     # substitui cada link encontrado pelo código de embed
     for youtube_id in youtube_links:
-        youtube_embed_code = '<iframe width="560" height="315" src="https://www.youtube.com/embed/{}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'.format(youtube_id)
+        youtube_embed_code = '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/{}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format(youtube_id)
         text = text.replace('https://www.youtube.com/watch?v=' + youtube_id, youtube_embed_code)
 
     return text
@@ -268,7 +268,7 @@ def post(request, post_id):
         
     return render(request, "portal/post.html", {
         'post': post,
-        'publicacao': urlize(youtube_embed(publicacao)|safe)
+        'publicacao': youtube_embed(publicacao)
     })
 
 @login_required
