@@ -12,10 +12,17 @@
 
     <form action="{% url 'publicar' %}" method="post">
         {% csrf_token %}
-        {{ post_form.titulo }}
-        {{ post_form.texto }}
-        <div id="editar_perfil">
-            <input type="submit" class="btn btn-primary" value="Publicar">
+        <div id="bloco-publicar">
+            <div id="titulo-publicar">
+                <div id="campo-titulo-publicar">Titulo:{{ post_form.titulo }}</div>
+            </div>
+            <div id="corpo-publicar">
+                {{ post_form.texto }}
+            </div>
+
+        </div>
+        <div id="baixo-publicar">
+            <input type="submit" class="botao-publicar" value="Escolher onde publicar">
         </div>
     </form>
 

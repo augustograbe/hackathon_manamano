@@ -7,9 +7,9 @@
         <div class="publicacao">
             <a href="{% url 'post' post.id %}">
                 <div class="titulo_post">
-                    {{ post.titulo }}
+                    <span>{{ post.titulo }}</span>
                     {% if post.importante %}
-                    importante
+                    <i class="material-icons" id="grupo_icon">push_pin</i>
                     {% endif %}
                 </div>
                 <div class="resumo_post">{{ post.publicacao }}</div>

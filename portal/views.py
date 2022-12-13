@@ -136,7 +136,7 @@ def categoria(request, grupo_id, categoria_id):
 @login_required
 def lista_grupos(request):
     current_user = request.user
-    grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) )
+    grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) ).distinct()
     return render(request, "portal/lista_grupos.html", {
         'usuario': current_user.username,
         'grupos': grupos

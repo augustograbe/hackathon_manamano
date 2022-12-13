@@ -13,4 +13,4 @@ class grupo_form(forms.Form):
 
 class post_form(forms.Form):
     titulo = forms.CharField(label="Titulo")
-    texto = forms.CharField(label="Publicação")
+    texto = forms.CharField(label="Publicação", widget=forms.Textarea(attrs={'id': 'textarea',"rows": 12}))
