@@ -24,6 +24,6 @@ urlpatterns = [
     path("escolher_grupo/<str:post_id>", views.escolher_grupo, name="escolher_grupo"),
     path("pesquisar/<str:grupo_id>", views.pesquisar, name="pesquisar"),
     path("postsAutor/<str:autor_id>", views.postsAutor, name="postsAutor"),
-
+    path("apresentacao_grupo/<str:grupo_id>", views.apresentacao_grupo, name="apresentacao_grupo"),
 
 ]

@@ -14,7 +14,7 @@
     
     <h3>Grupos:</h3>
     {% for grupo in grupos %}
-        <a href="/grupo/{{ grupo.id }}">
+        <a href="{% url 'apresentacao_grupo' grupo.id %}">
             <div class="bloco_lista_grupo">
                 <i class="material-icons" id="grupo_icon">groups</i>
                 <span>{{ grupo.nome }}</span>

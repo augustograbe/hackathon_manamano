@@ -281,7 +281,8 @@ def criar_grupo(request):
             admin = request.user
             novo_grupo = Grupo.objects.create(nome = nome, descricao = descricao)
             novo_grupo.admin.add(admin)
-
+            nova_categoria = Categoria.objects.create(nome = "Geral")
+            novo_grupo.categorias.add(nova_categoria)
         return HttpResponseRedirect(reverse('index'))
     else:  
 
@@ -311,7 +312,7 @@ def pesquisar(request, grupo_id):
         termo = request.POST["termo"]
         grupos = Grupo.objects.filter(nome__contains=termo)
         usuarios = User.objects.filter(username__contains=termo)
-        posts = Post.objects.filter(Q(titulo__contains=termo) | Q(publicacao__contains=termo)).order_by('-importante', '-data')
+        posts = Post.objects.filter(Q(titulo__contains=termo) | Q(publicacao__contains=termo)).order_by('-importante', '-data').distinct()
         return render(request, "portal/pesquisa.html", {
             'grupos': grupos,
             'usuarios': usuarios,
@@ -325,7 +326,7 @@ def pesquisar(request, grupo_id):
         admins = grupo.admin.all().filter(username__contains=termo)
         usuarios = list(chain(usuariosComuns,admins))
         categorias = grupo.categorias.all()
-        posts = Post.objects.filter(Q(Q(titulo__contains=termo) | Q(publicacao__contains=termo)) & Q(categoria__in = categorias)).order_by('-importante', '-data')
+        posts = Post.objects.filter(Q(Q(titulo__contains=termo) | Q(publicacao__contains=termo)) & Q(categoria__in = categorias)).order_by('-importante', '-data').distinct()
         return render(request, "portal/pesquisa.html", {
             'usuarios': usuarios,
             'posts': posts,
@@ -339,3 +340,16 @@ def postsAutor(request,autor_id):
         'posts': posts,
     })
 
+def apresentacao_grupo(request,grupo_id):
+    grupo = Grupo.objects.get(id=grupo_id)
+    current_user = request.user
+    if current_user in grupo.usuarios.all() or current_user in grupo.admin.all():
+        return redirect("grupo", grupo_id = grupo.id)
+    else:
+        if request.method == 'POST':
+            grupo.usuarios.add(current_user)
+            return redirect("grupo", grupo_id = grupo.id)
+        else:
+            return render(request, "portal/apresentacao_grupo.html", {
+            'grupo':grupo
+        })

@@ -1,0 +1,26 @@
+{% extends "portal/navbar_3.html" %}
+
+
+{% block nome %}
+    {{ grupo.nome }}
+{% endblock %}
+
+{% block back %}
+    {% url 'index' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="blocos">
+        <div class="descricao_grupo">
+            <h3>Descrição:</h3>
+            {{ grupo.descricao }}
+        </div>
+    </div>  
+    <div id="editar-perfil-baixo">
+        <form action="{% url 'apresentacao_grupo' grupo.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="botao-publicar" value="Entrar no grupo">
+        </form>
+    </div>
+{% endblock %}
