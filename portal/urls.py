@@ -22,7 +22,8 @@ urlpatterns = [
     path("publicar", views.publicar, name="publicar"),
     path("post/<str:post_id>", views.post, name="post"),
     path("escolher_grupo/<str:post_id>", views.escolher_grupo, name="escolher_grupo"),
-    path("pesquisar", views.pesquisar, name="pesquisar"),
+    path("pesquisar/<str:grupo_id>", views.pesquisar, name="pesquisar"),
+    path("postsAutor/<str:autor_id>", views.postsAutor, name="postsAutor"),
 
 
 ]
