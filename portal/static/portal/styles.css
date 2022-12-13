@@ -4,6 +4,7 @@
 
 .corpo {
     padding-top: 235px;
+    padding-bottom: 5vh;
 }
 body{
     background-color: whitesmoke;
@@ -55,6 +56,11 @@ body{
 
 h3{
     font-size: 2.5rem;
+}
+.descricao_grupo a#whatsapp{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .descricao_grupo a, .descricao_grupo i{
@@ -189,11 +195,19 @@ h3{
     float: right;
     background: white;
     border: 1px solid #ececec;
-    border-radius: 5px;
+    border-radius: 25px;
     padding: 20px;
     right: 5%;
     -webkit-box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
     box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
+    margin-top: 1vh;
+}    
+.grupo_user ul.admin_opt input {
+        background-color: #00000000;
+        border: none;
+}
+.grupo_user .admin_opt li:last-child{
+    border: none;
 }
 
 .mais_op:active .grupo_user, .mais_op:focus .grupo_user{

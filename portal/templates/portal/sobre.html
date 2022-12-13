@@ -33,7 +33,7 @@
                         <div class="grupo_user" >
                             <form method="POST">
                                 {% csrf_token %}
-                                <ul>
+                                <ul class="admin_opt">
                                     <input type="hidden" name="usuario" value="{{ usuario }}">
                                     <li><input type="submit" name="toggle_Admins" value="Remover dos Admins"/></li>
                                     <li><input type="submit" name="remover_do_grupo" value="Remover do grupo"/></li>
@@ -53,7 +53,7 @@
                         <div class="grupo_user" >
                             <form method="POST">
                                 {% csrf_token %}
-                                <ul>
+                                <ul class="admin_opt">
                                     <input type="hidden" name="usuario" value="{{ usuario }}">
                                     <li><input type="submit" name="toggle_Admins" value="Adiconar aos Admins"/></li>
                                     <li><input type="submit" name="remover_do_grupo" value="Remover do grupo"/></li>

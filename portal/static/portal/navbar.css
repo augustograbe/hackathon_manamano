@@ -79,18 +79,40 @@ animation: hover-fast-fade 0.4s ease;
 
 #nav #navbar .control-buttons a.search #search-box {
 width: 100%;
-height: 3rem;
-background: white;
+height: 130px;
+background: #00000000;
 z-index: 15;
 position: absolute;
 top: 0;
 left: 0;
 display: none;
--webkit-box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336);
-box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336);
+/* -webkit-box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336);
+box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336); */
 -webkit-animation: topRight 0.2s linear;
 animation: topRight 0.2s linear;
+padding: 2vw;
 }
+#nav #navbar .control-buttons a.search #search-box #barrinha input.search-form {
+    border-radius: 10px;
+}
+#nav #navbar .control-buttons a.search #search-box #barrinha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: stretch;
+    align-self: stretch;
+}
+#nav #navbar .control-buttons a.search #search-box #escurecer {
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000099;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 
 @-webkit-keyframes topRight {
 0% {
@@ -125,6 +147,11 @@ animation: topRight 0.2s linear;
 #nav #navbar .control-buttons a.search #search-box:focus, #nav #navbar .control-buttons a.search #search-box:hover, #nav #navbar .control-buttons a.search #search-box:active {
 display: block;
 }
+#nav #navbar .control-buttons a.search #search-box #escurecer:focus,
+#nav #navbar .control-buttons a.search #search-box #escurecer:hover,
+#nav #navbar .control-buttons a.search #search-box #escurecer:active {
+    display: none;
+}
 
 #nav #navbar .control-buttons a.search #search-box i {
 position: absolute;
@@ -139,6 +166,7 @@ color: #2274A5;
 
 #nav #navbar .control-buttons a.search #search-box input.search-form {
 width: 100%;
+height: 100%;
 border: 0;
 outline: 0;
 padding: 20px 10px 20px 60px;
@@ -367,7 +395,7 @@ font-size: 4rem;
     font-size: 1.9rem;
     padding: 15px 30px 20px 40px;
     background-color: #fff;
-    border-radius: 0 0 0 25px;
+    border-radius: 10px;
     font-weight: bold;
 }
 
@@ -377,4 +405,5 @@ font-size: 4rem;
     padding: 20px;
     font-weight: 600;
 }
+
 
