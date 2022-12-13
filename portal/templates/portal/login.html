@@ -5,12 +5,13 @@
     <div id="login-page">
         
 
-        {% if message %}
-            <div>{{ message }}</div>
-        {% endif %}
+        
 
         <div id="bloco-publicar">
             <img src="{% static 'portal/logo.svg' %}" alt="Manamano" width="280">
+            {% if message %}
+                <div id="mensagem-erro">{{ message }}</div>
+             {% endif %}
             <div id="form-login">
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}

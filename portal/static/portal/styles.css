@@ -394,12 +394,12 @@ h3{
 }
 
 #login-page #bloco-publicar{
-    height: 600px;
+    height: 630px;
     width: 70%;
     text-align: center;
 }
 
-#login-page input{
+#login-page input, #register-page input{
     max-width: 600px;
     font-size: 2.2rem;
     margin: auto;
@@ -413,7 +413,7 @@ h3{
     margin: auto;
 }
 
-#login-page #bloco-publicar img{
+#login-page #bloco-publicar img, #register-page #bloco-publicar img{
     padding-top: 40px;
 }
 
@@ -421,12 +421,25 @@ h3{
     border-radius: 15px;
     background-color: #477890;
     border: none;
-    padding: 15px;
+    padding: 15px 30px 15px 30px !important;
     color: white;
     font-weight: 600;
+    margin-top: 30px !important;
+    margin-bottom: 10px !important;
 }
 #bloco-publicar span{
     font-size: 1.9rem;
+}
+
+#register-page #bloco-publicar{
+    height: 900px;
+    width: 70%;
+    text-align: center;
+}
+
+#mensagem-erro{
+    font-size: 1.9rem;
+    color: #EF4136;
 }
 
 /* Tornar Responsivo para desktop ---------------------- */
