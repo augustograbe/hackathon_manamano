@@ -5,6 +5,9 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.db.models import Q
 from django.shortcuts import redirect
+import re 
+from django.utils.html import format_html
+from django.utils.html import urlize
 
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
@@ -14,6 +17,21 @@ from .forms import *
 
 from itertools import chain
 
+
+#Funções
+# função para substituir os links do YouTube pelo código de embed
+def youtube_embed(text):
+    #text = urlize(text)
+    # procura por links do YouTube no texto
+    youtube_link_pattern = r'https://www\.youtube\.com/watch\?v=([^\s]+)'
+    youtube_links = re.findall(youtube_link_pattern, text)
+
+    # substitui cada link encontrado pelo código de embed
+    for youtube_id in youtube_links:
+        youtube_embed_code = '<iframe width="560" height="315" src="https://www.youtube.com/embed/{}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'.format(youtube_id)
+        text = text.replace('https://www.youtube.com/watch?v=' + youtube_id, youtube_embed_code)
+
+    return text
 
 # Login
 def login_view(request):
@@ -234,6 +252,8 @@ def escolher_grupo(request, post_id):
 def post(request, post_id):
     current_user = request.user
     post = Post.objects.get(id=post_id)
+    publicacao = post.publicacao
+    publicacao
     if request.method == 'POST':
         if 'salvar' in request.POST:
             if post in current_user.salvos.all():
@@ -247,7 +267,8 @@ def post(request, post_id):
             post.save()
         
     return render(request, "portal/post.html", {
-        'post': post
+        'post': post,
+        'publicacao': urlize(youtube_embed(publicacao)|safe)
     })
 
 @login_required
