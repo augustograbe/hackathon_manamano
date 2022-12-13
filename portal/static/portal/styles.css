@@ -267,6 +267,45 @@ h3{
     color: white;
     font-weight: 600;
     border: none;
+    box-shadow: 0 0 30px #ccc;
+}
+
+/*--------------escolher grupo -------*/
+.checkmark{
+    height: 60px;
+    width: 60px;
+    background-color: #eee;
+    border-radius: 50%;
+    float: right;
+    margin-top: 15px;
+}
+.bloco_lista_grupo input:checked ~ .checkmark{
+    background-color: #477890;
+}
+
+.show-cat-escolher{
+    margin-left: 60px;
+    display: none;
+    -webkit-animation: showcat 0.2s linear;
+    animation: showcat 0.2s linear;
+}
+@keyframes showcat {
+    0% {
+        -webkit-transform: translateY(-30px);
+                transform: translateY(-30px);
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+                transform: translateY(0%);
+    }
+    }
+
+.cat-escolher:active .show-cat-escolher, .cat-escolher:focus .show-cat-escolher{
+    display: block;
+}
+
+.bloco_lista_grupo input:checked ~ .checkmark ~ .show-cat-escolher {
+    display: block;
 }
 
 

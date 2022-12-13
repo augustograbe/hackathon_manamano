@@ -12,20 +12,25 @@
     <form action="{% url 'escolher_grupo' post_id %}" method="post">
         {% csrf_token %}
         {% for grupo in grupos %}
-            <div class="bloco_lista_grupo">
-                <i class="material-icons" id="grupo_icon">groups</i>
-                <span>{{ grupo.nome }}</span>
-                <i id="grupo_seta" class="material-icons">arrow_forward_ios</i>
-            </div>
-            {% for categoria in grupo.categorias.all %}
+            <a href="#" class="cat-escolher">
                 <div class="bloco_lista_grupo">
-                    <i class="material-icons" id="grupo_icon">category</i>
-                    <span><label for="categoria_inputs"> {{ categoria.nome }}</label></span>
-                    <input type="checkbox" name="categoria_inputs" value="{{ categoria.nome }}">
+                    <i class="material-icons" id="grupo_icon">groups</i>
+                    <span>{{ grupo.nome }}</span>
                     <i id="grupo_seta" class="material-icons">arrow_forward_ios</i>
                 </div>
-            {% endfor %}
+                {% for categoria in grupo.categorias.all %}
+                    <div class="show-cat-escolher">
+                        <div class="bloco_lista_grupo">
+                            <i class="material-icons" id="grupo_icon">category</i>
+                            <span><label for="categoria_inputs"> {{ categoria.nome }}</label></span>
+                            <input type="radio" name="categoria_inputs"  class="checkmark" value="{{ categoria.nome }}">
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </a>
         {% endfor %}
+            
         <input type="submit" value="Submit">
     </form>
 {% endblock %}

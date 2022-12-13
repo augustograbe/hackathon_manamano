@@ -23,11 +23,6 @@ urlpatterns = [
     path("post/<str:post_id>", views.post, name="post"),
     path("escolher_grupo/<str:post_id>", views.escolher_grupo, name="escolher_grupo"),
     path("pesquisar", views.pesquisar, name="pesquisar"),
-    #pesquisar
-    # api
-    #path("salvar")
-    #path("desguardar")
-    #path("marcar")
-    #path("desmarcar")
+
 
 ]

@@ -224,7 +224,7 @@ def escolher_grupo(request, post_id):
         return HttpResponseRedirect(reverse('index'))
     else:
         current_user = request.user
-        grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) )
+        grupos = Grupo.objects.filter(Q(usuarios = current_user) | Q(admin = current_user) ).distinct()
         return render(request, 'portal/escolher_grupo.html', {
             'grupos': grupos,
             'post_id': post_id
