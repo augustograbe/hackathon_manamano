@@ -302,8 +302,8 @@ h3{
 .show-cat-escolher{
     margin-left: 60px;
     display: none;
-    -webkit-animation: showcat 0.2s linear;
-    animation: showcat 0.2s linear;
+    -webkit-animation: showcat 0.5s linear;
+    animation: showcat 0.5s linear;
 }
 @keyframes showcat {
     0% {

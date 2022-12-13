@@ -88,8 +88,8 @@ left: 0;
 display: none;
 /* -webkit-box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336);
 box-shadow: 0 4px 3px rgba(44, 44, 44, 0.336); */
--webkit-animation: topRight 0.2s linear;
-animation: topRight 0.2s linear;
+-webkit-animation: topRight 0.5s linear;
+animation: topRight 0.5s linear;
 padding: 2vw;
 }
 #nav #navbar .control-buttons a.search #search-box #barrinha input.search-form {
