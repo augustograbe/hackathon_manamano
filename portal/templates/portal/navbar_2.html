@@ -13,8 +13,14 @@
             <div class="control-buttons" id="lupa">
                 <a href="#" class="search"><i class="material-icons">search</i>
                     <div id="search-box">
-                        <input type="text" class="search-form" placeholder="Search...">
-                        <i class="material-icons">arrow_right_alt</i>
+                        <form action="{% url 'pesquisar' grupo.id %}" method="POST">
+                            {% csrf_token %}
+                            <div id="barrinha">
+                                <input type="text" name="termo" class="search-form" placeholder="Buscar...">
+                                <input type="submit" class="btn-pesquisar" value="Buscar!" >
+                            </div>
+                        </form>
+                        <div id="escurecer"></div>
                     </div>
                 </a>
             </div>
