@@ -12,11 +12,18 @@
 
 <form action="{% url 'criar_grupo' %}" method="post">
     {% csrf_token %}
-    {{ grupo_form.nome }}
-    {{ grupo_form.descricao }}
-    <div id="editar_perfil">
-        <input type="submit" class="btn btn-primary" value="Criar">
+    <div class="blocos">
+        <div id="form-criar">
+            <ul>
+                <li><span>Nome do grupo: </span>{{ grupo_form.nome }}</li>
+                <li>Descrição:</li>
+                <li>{{ grupo_form.descricao }}</li>
+            </ul>
+        </div>
+    </div>
+    <div id="baixo-publicar">
+        <input type="submit" class="botao-publicar" value="Criar">
     </div>
 </form>
 
-{% endblock %}
+{% endblock %}  

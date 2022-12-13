@@ -177,7 +177,6 @@ background: white;
 border: 1px solid #ececec;
 border-radius: 2px;
 margin: 5px;
-padding-right: 30px;
 z-index: 15;
 position: absolute;
 top: 0;
@@ -185,8 +184,10 @@ right: 0;
 display: none;
 -webkit-box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
 box-shadow: 5px 4px 17px rgba(80, 80, 80, 0.336);
--webkit-animation: topRight 0.2s linear;
-animation: topRight 0.2s linear;
+-webkit-animation: topRight 0.5s linear;
+animation: topRight 0.5s linear;
+border-radius: 0 0 0 20px;
+padding: 20px 30px 20px 10px;
 }
 
 @keyframes topRight {
@@ -214,8 +215,8 @@ list-style-type: none;
 
 #nav #navbar .control-buttons a.settings #settings-box ul li {
 display: block;
-padding: 20px;
 color: #747474;
+font-size: 2.2rem;
 }
 
 #nav #navbar .control-buttons a.settings #settings-box ul li:hover {
@@ -369,3 +370,11 @@ font-size: 4rem;
     border-radius: 0 0 0 25px;
     font-weight: bold;
 }
+
+#settings-box button{
+    background-color: white;
+    border: none;
+    padding: 20px;
+    font-weight: 600;
+}
+

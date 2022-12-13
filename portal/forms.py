@@ -9,7 +9,7 @@ class perfil_form(forms.Form):
 
 class grupo_form(forms.Form):
     nome = forms.CharField(label="Nome do grupo")
-    descricao = forms.CharField(label="Descrição do grupo")
+    descricao = forms.CharField(label="Descrição do grupo", widget=forms.Textarea(attrs={'id': 'textarea',"rows": 6}))
 
 class post_form(forms.Form):
     titulo = forms.CharField(label="Titulo")

@@ -349,6 +349,85 @@ h3{
     margin: auto;
     padding-top: 30px;
 }
+/*------------forms criar-----------*/
+
+#form-criar input{
+    font-size: 2.2rem;
+    border-radius: 10px;
+    border: 2px solid #8e8e8e;
+    margin-left: 30px;
+    width: 60%;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+#form-criar ul{
+    list-style-type: none;  
+}
+
+#form-criar li{
+    width: 90%;
+}
+
+#form-criar span{
+    width: 40%;
+}
+
+#form-criar{
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+#form-criar textarea{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 2.2rem;
+    border: 2px solid #8e8e8e;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+/*-----------login-page----------*/
+#login-page img{
+    margin: auto;
+}
+
+#login-page #bloco-publicar{
+    height: 600px;
+    width: 70%;
+    text-align: center;
+}
+
+#login-page input{
+    max-width: 600px;
+    font-size: 2.2rem;
+    margin: auto;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+#form-login{
+    padding-top: 100px;
+    width: 80%;
+    margin: auto;
+}
+
+#login-page #bloco-publicar img{
+    padding-top: 40px;
+}
+
+.botao-login{
+    border-radius: 15px;
+    background-color: #477890;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-weight: 600;
+}
+#bloco-publicar span{
+    font-size: 1.9rem;
+}
 
 /* Tornar Responsivo para desktop ---------------------- */
 @media only screen and (min-width: 1000px) {
