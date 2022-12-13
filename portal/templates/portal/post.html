@@ -9,26 +9,35 @@
 {% endblock %}
 
 {% block body %}
-    <form method="POST">
-        {% csrf_token %}
-        {% if post.importante %}
-            <input type="submit" name="importante" value="Desfixar" />
-        {% else %}
-            <input type="submit" name="importante" value="Fixar no mural" />
-        {% endif %}
-    </form>
+    <div class="publicacao-cabeca">
+        <div class="bottom_post">
+            <i class="material-icons" id="grupo_icon">account_circle</i>
+            {{ post.autor }}<span>{{ post.data }}</span>
+        </div>
+    </div>
+    <div id="bloco-publicar">
+        <div id="corpo-publicar">
+            <span>{{ post.publicacao }}</span>
+        </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        {% if post in user.salvos.all %}
-            <input type="submit" name="salvar" value="Deletar de salvos" />
-        {% else %}
-            <input type="submit" name="salvar" value="Adicionar a salvos" />
-        {% endif %}
-    </form>
+    </div>
+    <div class="publicacao-pe">
+        <form method="POST">
+            {% csrf_token %}
+            {% if post.importante %}
+                <input id="botao-importante" type="submit" name="importante" value="Desfixar" />
+            {% else %}
+                <input id="botao-importante" type="submit" name="importante" value="Fixar no mural" />
+            {% endif %}
+        </form>
 
-    {{ post.autor }}
-    {{ post.data}}
-    {{ post.publicacao }}
-    
+        <form method="POST">
+            {% csrf_token %}
+            {% if post in user.salvos.all %}
+                <input id="botao-salvar" type="submit" name="salvar" value="Desguardar" />
+            {% else %}
+                <input id="botao-salvar" type="submit" name="salvar" value="Salvar" />
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}

@@ -241,14 +241,15 @@ h3{
     padding-top: 30px;
     width: 90%;
     margin: auto;
+    font-size: 2.1rem;
+    padding-bottom: 40px;
 }
 #corpo-publicar textarea{
     border-radius: 10px;
     border: none;
     width: 100%;
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     resize:none;
-    margin-bottom: 40px;
 }
 
 #baixo-publicar{
@@ -308,6 +309,46 @@ h3{
     display: block;
 }
 
+#publicar-cat{
+    width: 90%;
+    margin: auto;
+}
+
+/*---------------post--------*/
+#botao-importante{
+    float: right;
+    font-size: 2rem;
+    background-color: #EF4136;
+    color: white;
+    padding: 15px 40px 15px 40px;
+    border: none;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-right: 5%;
+}
+
+#botao-salvar{
+    float: right;
+    font-size: 2rem;
+    background-color:#477890;
+    color: white;
+    padding: 15px 40px 15px 40px;
+    border: none;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-right: 20px;
+}
+
+.publicacao-cabeca{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 30px;
+}
+.publicacao-pe{
+    width: 90%;
+    margin: auto;
+    padding-top: 30px;
+}
 
 /* Tornar Responsivo para desktop ---------------------- */
 @media only screen and (min-width: 1000px) {
