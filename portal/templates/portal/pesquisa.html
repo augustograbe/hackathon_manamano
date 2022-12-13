@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block body %}
+{% if grupos|length > 0 %}
 <div class="blocos">
     
     <h3>Grupos:</h3>
@@ -22,7 +23,8 @@
         </a>
     {% endfor %}
 </div>
-
+{% endif %}
+{% if usuarios|length > 0 %}
 <div class="blocos">
     <h3>Usuários:</h3>
     <div class="descricao_grupo">
@@ -39,7 +41,8 @@
         </ul>
     </div>
 </div>
-
+{% endif %}
+{% if posts|length > 0 %}
 <div class="blocos">
     <h3>Publicações:</h3>
     {% for post in posts %}
@@ -57,4 +60,5 @@
         </div>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
