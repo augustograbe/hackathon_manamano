@@ -347,8 +347,11 @@ def apresentacao_grupo(request,grupo_id):
         return redirect("grupo", grupo_id = grupo.id)
     else:
         if request.method == 'POST':
-            grupo.usuarios.add(current_user)
-            return redirect("grupo", grupo_id = grupo.id)
+            if request.user.is_authenticated:
+                grupo.usuarios.add(current_user)
+                return redirect("grupo", grupo_id = grupo.id)
+            else:
+                return redirect("login")
         else:
             return render(request, "portal/apresentacao_grupo.html", {
             'grupo':grupo
