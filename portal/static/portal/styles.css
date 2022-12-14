@@ -183,6 +183,10 @@ h3{
     font-size: 1.8rem;
     color: #747474;
 }
+
+#post-compartilhar{
+    margin-top: 40px;
+}
 /*----------tornar usuario admin em sobre----------------*/
 
 #grupo_op_icon{
@@ -363,6 +367,7 @@ h3{
     width: 90%;
     margin: auto;
     padding-top: 30px;
+    padding-bottom: 80px;
 }
 .video-container {
     position: relative;

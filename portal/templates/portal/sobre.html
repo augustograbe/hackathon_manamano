@@ -18,11 +18,14 @@
         </div>
     </div>
     {% endif %}
+
     <div class="blocos">
         <div class="descricao_grupo">
-            <a href="https://api.whatsapp.com/send?text=http://manamano.pythonanywhere.com/apresentacao_grupo{{ grupo.id }}">Compartilhar grupo no WhatsApp</a>
+            <i class="material-icons" id="grupo_icon">ios_share</i>
+            <a href="https://api.whatsapp.com/send?text=http://manamano.pythonanywhere.com/apresentacao_grupo/{{ grupo.id }}">Compartilhar grupo no WhatsApp</a>
         </div>
     </div>
+
     <div class="blocos">
         <div class="descricao_grupo">
             <h3>Membros:</h3>
