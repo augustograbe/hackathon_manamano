@@ -12,11 +12,13 @@
     <div class="publicacao-cabeca">
         <div class="bottom_post">
             <i class="material-icons" id="grupo_icon">account_circle</i>
-            {{ post.autor }}<span>{{ post.data }}</span>
+            <a href="{% url 'perfil' post.autor %}">{{ post.autor }}</a><span>{{ post.data }}</span>
         </div>
     </div>
     <div id="bloco-publicar">
+        
         <div id="corpo-publicar">
+            <h1>{{ post.titulo }}</h1>
                 <span>{{ publicacao|safe }}</span>
 
         </div>

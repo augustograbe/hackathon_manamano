@@ -26,10 +26,18 @@ def youtube_embed(text):
     youtube_link_pattern = r'https://www\.youtube\.com/watch\?v=([^\s]+)'
     youtube_links = re.findall(youtube_link_pattern, text)
 
+    # procura por links comuns no texto
+    link_pattern = r'\bhttps?://\S+'
+    links = re.findall(link_pattern, text)
+
     # substitui cada link encontrado pelo código de embed
     for youtube_id in youtube_links:
         youtube_embed_code = '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/{}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format(youtube_id)
         text = text.replace('https://www.youtube.com/watch?v=' + youtube_id, youtube_embed_code)
+
+    for link in links:
+        link_code = '<a href="{}">{}</a>'.format(link, link)
+        text = text.replace(link, link_code)
 
     return text
 
@@ -38,7 +46,9 @@ def login_view(request):
     if request.method == "POST":
 
         # Attempt to sign user in  Test
-        username = request.POST["username"]
+        email = request.POST["email"]
+        usuario = User.objects.get( email = email )
+        username = usuario.username
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
@@ -235,8 +245,8 @@ def escolher_grupo(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == "POST":
         categoria_inputs = request.POST.getlist("categoria_inputs")
-        for categoria_nome in categoria_inputs:
-            categoria_selecionada = Categoria.objects.get(nome = categoria_nome)
+        for categoria_id in categoria_inputs:
+            categoria_selecionada = Categoria.objects.get(id = categoria_id)
             categoria_selecionada.posts.add(post)
         return HttpResponseRedirect(reverse('index'))
     else:

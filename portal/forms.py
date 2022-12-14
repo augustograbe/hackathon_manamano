@@ -12,5 +12,6 @@ class grupo_form(forms.Form):
     descricao = forms.CharField(label="Descrição do grupo", widget=forms.Textarea(attrs={'id': 'textarea',"rows": 6}))
 
 class post_form(forms.Form):
-    titulo = forms.CharField(label="Titulo")
-    texto = forms.CharField(label="Publicação", widget=forms.Textarea(attrs={'id': 'textarea',"rows": 12}))
+    titulo = forms.CharField(label="Titulo", widget=forms.TextInput(attrs={'placeholder': 'Escreva o titulo...'}))
+    texto = forms.CharField(label="Publicação", widget=forms.Textarea(attrs={'id': 'textarea',"rows": 12, 'placeholder': 'Escreva sua poblicação com links e vídeos do youtube...'}))
+    
